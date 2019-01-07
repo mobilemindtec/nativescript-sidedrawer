@@ -1,0 +1,5 @@
+#!/bin/bash
+
+./gradlew exportJar
+
+cp app/release/sidedrawer.jar ../../platforms/android/libs

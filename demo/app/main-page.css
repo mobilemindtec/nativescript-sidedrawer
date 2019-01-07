@@ -1,0 +1,46 @@
+Label{
+
+}
+
+
+ListView{
+	background-color: transparent;
+	color: #FFFFFF;
+}
+
+.title{
+	color: #FFFFFF;
+	font-size: 18;
+	horizontal-align: center;
+	width: auto;
+}
+
+.divisor{
+  margin:5 10 5 10;
+  background-color: #FFFFFF;
+  height: 1;
+  width: auto;
+  horizontal-align: center;
+}
+
+.profile-image {
+    margin-top: 10;
+    horizontal-align: center;
+    width: 80;
+    height:auto;
+}
+
+Button {
+  background-color: #2980b9;
+  color: #FFFFFF;
+  font-size: 17;
+}
+
+.side-drawer{
+  background-color: #e74c3c; 
+  color: #FFFFFF;
+}
+
+.content{
+  background-color: #22a7f0;
+}

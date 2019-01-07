@@ -1,0 +1,82 @@
+<Page
+	xmlns="http://schemas.nativescript.org/tns.xsd"
+	xmlns:drawer="~/nativescript-sidedrawer"
+  xmlns:simpleView="~/nativescript-simple-view"
+	loaded="loaded">
+
+
+  <Page.actionBar>
+    <ActionBar title="drawer" id="actionBar">
+    	<ActionBar.actionItems>
+    		<ActionItem ios.position="left" ios.systemIcon="10" tap="onOpen"/>
+    	</ActionBar.actionItems>
+      <android>
+          <NavigationButton tap="onOpen" icon="res://ic_action_storage" />
+      </android>
+    </ActionBar>
+  </Page.actionBar>
+
+  <GridLayout>
+    <!--
+    <simpleView:SimpleView>
+
+      <simpleView:SimpleView.mainContent>
+        <StackLayout class="content" style='padding-top: 100'>
+            <GridLayout rows="auto, auto">
+              <Label text="{{ message }}" visibility="{{ state ? 'visible' : 'collapse' }}" row="0" style='color: #fff'/>
+              <Button text="ok" tap="onTap" row="1"/>
+          </GridLayout>
+        </StackLayout>
+      </simpleView:SimpleView.mainContent>
+
+    </simpleView:SimpleView>
+    -->
+    
+  	<drawer:SideDrawer
+  		id="sideDrawer"
+      drawerFixeOpened="false"
+  		drawerPosition="left"
+  		drawerMargin="0"
+      drawerContentSize="0"
+      drawerHasActionBar="false"
+  		drawerOpening="drawerOpening"
+  		drawerOpened="drawerOpened"
+  		drawerClosing="drawerClosing"
+  		drawerClosed="drawerClosed">
+
+  		<drawer:SideDrawer.drawerContent>
+  			<GridLayout rows="auto, auto, auto, auto, *, auto" style='background-color: #1e8bc3; color: #FFFFFF'>
+
+          <Image src="~/res/icon.png" stretch="aspectFit" class="profile-image"/>
+
+          <Label text="My Name" class="title" row="1"/>
+          <Label text="myemail@internet.com" class="title" row="2"/>
+          <Label class="divisor" row="3"/>
+
+  				 <ListView items="{{ sidebarItems }}" row="4" itemTap="onItemTap">
+  				    <ListView.itemTemplate>
+  				       <GridLayout columns="auto, auto" style="padding: 10 10;">
+  				       		<Image src="{{ icon }}" col="0" style="width: 40;"/>
+  				       		<Label text="{{ title }}" col="1" style="color: #FFFFFF; margin-left: 15;" />
+  				       </GridLayout>
+  				    </ListView.itemTemplate>
+  				 </ListView>
+           <Button text="logout" row='5' style='background-color: #34495e; margin: 50 20'/>
+  			</GridLayout>
+  		</drawer:SideDrawer.drawerContent>
+
+  		<drawer:SideDrawer.mainContent>
+  			<StackLayout class="content" style='padding: 30'>
+            <GridLayout rows="auto, auto">
+  				    <Label text="{{ message }}" visibility="{{ state ? 'visible' : 'collapse' }}" row="0" style='color: #fff'/>
+              <Button text="ok" tap="onTap" row="1"/>
+          </GridLayout>
+  			</StackLayout>
+  		</drawer:SideDrawer.mainContent>
+
+  	</drawer:SideDrawer>
+
+    
+
+  </GridLayout>
+</Page>
