@@ -16,6 +16,7 @@
     </ActionBar>
   </Page.actionBar>
 
+
   <GridLayout>
     <!--
     <simpleView:SimpleView>
@@ -38,6 +39,7 @@
   		drawerPosition="left"
   		drawerMargin="0"
       drawerContentSize="0"
+      iosOverflowSafeArea="false"      
       drawerHasActionBar="false"
   		drawerOpening="drawerOpening"
   		drawerOpened="drawerOpened"
@@ -66,12 +68,31 @@
   		</drawer:SideDrawer.drawerContent>
 
   		<drawer:SideDrawer.mainContent>
-  			<StackLayout class="content" style='padding: 30'>
-            <GridLayout rows="auto, auto">
-  				    <Label text="{{ message }}" visibility="{{ state ? 'visible' : 'collapse' }}" row="0" style='color: #fff'/>
-              <Button text="ok" tap="onTap" row="1"/>
-          </GridLayout>
-  			</StackLayout>
+        <GridLayout class="content">
+    			<StackLayout >
+              
+    				    <Label text="{{ message }}" visibility="{{ state ? 'visible' : 'collapse' }}" row="0" style='color: #fff'/>
+                <Button text="ok" tap="onTap" row="1"/>
+                <Button text="ok" tap="onTap" row="1"/>
+                <Button text="ok" tap="onTap" row="1"/>
+                <Button text="ok" tap="onTap" row="1"/>
+                <Button text="ok" tap="onTap" row="1"/>
+
+                <Button text="ok" tap="onTap" row="1"/>
+                <Button text="ok" tap="onTap" row="1"/>
+                <Button text="ok" tap="onTap" row="1"/>
+                <Button text="ok" tap="onTap" row="1"/>
+                <Button text="ok" tap="onTap" row="1"/>
+                <Button text="ok" tap="onTap" row="1"/>
+                <Button text="ok" tap="onTap" row="1"/>
+                <Button text="ok" tap="onTap" row="1"/>
+                <Button text="ok" tap="onTap" row="1"/>
+                
+                <Button text="ok" tap="onTap" row="1"/>
+            
+            
+    			</StackLayout>
+        </GridLayout>
   		</drawer:SideDrawer.mainContent>
 
   	</drawer:SideDrawer>

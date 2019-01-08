@@ -198,6 +198,9 @@ exports.drawerhasActionBarPoperty = new view.Property({
 });
 
 
+
+
+
 exports.drawerPositionProperty.register(SideDrawer);
 exports.drawerMarginProperty.register(SideDrawer);
 exports.drawerContentSizeProperty.register(SideDrawer);
@@ -205,6 +208,5 @@ exports.mainContentProperty.register(SideDrawer);
 exports.drawerContentProperty.register(SideDrawer);
 exports.drawerFixeOpenedProperty.register(SideDrawer);
 exports.drawerhasActionBarPoperty.register(SideDrawer);
-
 
 exports.SideDrawer = SideDrawer;

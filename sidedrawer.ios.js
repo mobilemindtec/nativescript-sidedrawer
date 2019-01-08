@@ -18,9 +18,16 @@ var clearColor = utils.ios.getter(UIColor, UIColor.clearColor)
 var blackColor = utils.ios.getter(UIColor, UIColor.blackColor)
 var blueColor = utils.ios.getter(UIColor, UIColor.blueColor)
 
+var majorVersion = utils.ios.MajorVersion;
+
 var MMSideDrawer = UIViewController.extend({
 
-    initWithViewContentContentWidthMarginPositionHasActionBarOwner: function(contentWidth, margin, position, hasActionBar, owner){
+    initWithViewContentContentWidthMarginPositionHasActionBarOwner: function(
+        contentWidth, 
+        margin, 
+        position, 
+        hasActionBar, 
+        owner){
         
         this._owner = owner
         var self = this.super.init()
@@ -243,6 +250,7 @@ var MMSideDrawer = UIViewController.extend({
         }
     },
 
+
     setMargin: function(margin){
         this._margin = margin
     },
@@ -354,11 +362,12 @@ var SideDrawer = (function (_super) {
             this.drawerContentSize,
             this.drawerMargin,
             this.drawerPosition,
-            this.drawerHasActionBar,
+            this.drawerHasActionBar,            
             this
         )
 
         this._ios = UIView.alloc().initWithFrame(mainScreen.bounds)
+        this._ios.backgroundColor = blackColor
     
     }
 
@@ -402,7 +411,9 @@ var SideDrawer = (function (_super) {
         var content = child.nativeViewProtected
 
         if (child === this.mainContent) {
-          this._ios.addSubview(content);
+            
+            this._ios.addSubview(content);
+
         }else if(child === this.drawerContent){
             this.drawer.setDraweContent(content)                        
             this.drawer.makeDrawerView()
@@ -410,7 +421,6 @@ var SideDrawer = (function (_super) {
         
         return true        
     }
-
 
     SideDrawer.prototype._onDrawerContentSizeChanged = function (oldValue, newValue) {
       var data = {
@@ -526,56 +536,34 @@ var SideDrawer = (function (_super) {
 
     SideDrawer.prototype.onLayout = function (left, top, right, bottom) {
 
-        var controller = frameModule.topmost().ios.controller
-        var statusBarHeight = sharedApplication.statusBarFrame.size.height
-        var actionBarHeight = (this.drawerHasActionBar) ? controller.navigationBar.frame.size.height : 0        
-        var navBarHeight = actionBarHeight  + statusBarHeight
-        var size = this.drawer.getView().frame.size
-
-        var width = right - left;
-        var height = bottom - top;
-
-        var w = (this.drawerContentSize > 0) ? this.drawerContentSize : size.width - this.drawerMargin
-        var h = size.height - navBarHeight
-
-        var drawerSizeW = utils.layout.toDevicePixels(w);
-        var drawerSizeH = utils.layout.toDevicePixels(h);
+        var width = right - left
+        var height = bottom - top
+        var screenWidth = width
+        var screenHeight = height        
+        var drawerSize = utils.layout.toDevicePixels(this.drawerContentSize)
         
-        
-        var wp = utils.layout.toDevicePixels(size.width)
-        var hp = utils.layout.toDevicePixels(size.height)
-
-        this.drawerContent.layout(0, 0, drawerSizeW, drawerSizeH);
-        
-
-        if(this._fixedOpned){
-            this.mainContent.layout(0, 0,  wp, hp);       
-        } else {
-            this.mainContent.layout(0, 0, wp, hp);       
+        if (this.drawerPosition == 'top' || this.drawerPosition == 'bottom') {
+            this.drawerContent.layout(0, 0, right, drawerSize)
+        }
+        else {
+            this.drawerContent.layout(0, 0, drawerSize, bottom)
         }
 
-        this._drawer.setPosition(this.drawerPosition)
-        this._drawer.setMargin(this.drawerMargin)
-        this._drawer.setHasActionBar(this.drawerHasActionBar)
+        this.mainContent.layout(0, 0, width, height)
     }
 
     SideDrawer.prototype.onMeasure = function (widthMeasureSpec, heightMeasureSpec) {
                 
-        var controller = frameModule.topmost().ios.controller
-        var statusBarHeight = sharedApplication.statusBarFrame.size.height
-        var actionBarHeight = (this.drawerHasActionBar) ? controller.navigationBar.frame.size.height : 0
-        var navBarHeight = actionBarHeight  + statusBarHeight
-        var size = this.drawer.getView().frame.size
-        
+        var pos = this.drawerPosition
         var drawerWidth = widthMeasureSpec;
         var drawerHeight = heightMeasureSpec;
-        var w = (this.drawerContentSize > 0) ? this.drawerContentSize : size.width - this.drawerMargin
-        var h = size.height - navBarHeight
-        var drawerSizeW = utils.layout.toDevicePixels(w);
-        var drawerSizeH = utils.layout.toDevicePixels(h);
-        
-        view.View.measureChild(this, this.drawerContent, utils.layout.makeMeasureSpec(drawerSizeW, utils.layout.EXACTLY), utils.layout.makeMeasureSpec(drawerSizeH, utils.layout.EXACTLY));
-
+        var drawerSize = utils.layout.toDevicePixels(this.drawerContentSize);
+        if (this.drawerPosition == 'top' || this.drawerPosition == 'bottom') {
+            view.View.measureChild(this, this.drawerContent, drawerWidth, utils.layout.makeMeasureSpec(drawerSize, utils.layout.EXACTLY));
+        }
+        else {
+            view.View.measureChild(this, this.drawerContent, utils.layout.makeMeasureSpec(drawerSize, utils.layout.EXACTLY), drawerHeight);
+        }
         var result = view.View.measureChild(this, this.mainContent, widthMeasureSpec, heightMeasureSpec);
         var width = utils.layout.getMeasureSpecSize(widthMeasureSpec);
         var widthMode = utils.layout.getMeasureSpecMode(widthMeasureSpec);

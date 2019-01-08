@@ -42,5 +42,10 @@ Button {
 }
 
 .content{
+  padding: 0 30;
   background-color: #22a7f0;
+}
+
+.content button{
+  margin-top: 15;
 }
