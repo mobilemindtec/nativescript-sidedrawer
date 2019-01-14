@@ -1,0 +1,4 @@
+module SideDrawer {
+  umbrella "../../../../../platforms/ios/Pods/Headers/Public"
+  export *
+}
