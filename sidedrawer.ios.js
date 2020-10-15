@@ -12,11 +12,11 @@ var view = require("ui/core/view")
 var app = require("application")
 var frameModule = require("ui/frame")
 
-var mainScreen = utils.ios.getter(UIScreen, UIScreen.mainScreen)
-var sharedApplication = utils.ios.getter(UIApplication, UIApplication.sharedApplication)
-var clearColor = utils.ios.getter(UIColor, UIColor.clearColor)
-var blackColor = utils.ios.getter(UIColor, UIColor.blackColor)
-var blueColor = utils.ios.getter(UIColor, UIColor.blueColor)
+var mainScreen =  UIScreen.mainScreen
+var sharedApplication =  UIApplication.sharedApplication
+var clearColor = UIColor.clearColor
+var blackColor = UIColor.blackColor
+var blueColor = UIColor.blueColor
 
 var majorVersion = utils.ios.MajorVersion;
 

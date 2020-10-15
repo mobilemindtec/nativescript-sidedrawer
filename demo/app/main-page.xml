@@ -1,7 +1,6 @@
 <Page
 	xmlns="http://schemas.nativescript.org/tns.xsd"
-	xmlns:drawer="~/nativescript-sidedrawer"
-  xmlns:simpleView="~/nativescript-simple-view"
+	xmlns:drawer="nativescript-sidedrawer"  
 	loaded="loaded">
 
 
@@ -37,10 +36,10 @@
   		id="sideDrawer"
       drawerFixeOpened="false"
   		drawerPosition="left"
-  		drawerMargin="0"
+  		drawerMargin="70"
       drawerContentSize="0"
       iosOverflowSafeArea="false"      
-      drawerHasActionBar="false"
+      drawerHasActionBar="true"
   		drawerOpening="drawerOpening"
   		drawerOpened="drawerOpened"
   		drawerClosing="drawerClosing"
