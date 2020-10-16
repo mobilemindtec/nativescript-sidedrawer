@@ -18,7 +18,6 @@ var clearColor = UIColor.clearColor
 var blackColor = UIColor.blackColor
 var blueColor = UIColor.blueColor
 
-var majorVersion = utils.ios.MajorVersion;
 
 var MMSideDrawer = UIViewController.extend({
 
